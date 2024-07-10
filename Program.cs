@@ -1,7 +1,16 @@
+using BTLNhapMonCNPM.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("CONNECTION_STRING");
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+    options.UseNpgsql(connectionString));
 
 var app = builder.Build();
 
@@ -14,14 +23,22 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), @"Images")),
+    RequestPath = new PathString("/Images")
+});
 
 app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseFileServer();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Drink}/{action=Create}/{id?}");
 
 app.Run();

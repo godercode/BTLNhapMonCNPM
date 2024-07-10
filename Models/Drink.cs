@@ -1,0 +1,34 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BTLNhapMonCNPM.Models;
+
+public class Drink
+{
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int? Id { get; set; }
+
+    [Required]
+    [StringLength(255)]
+    public string? Name { get; set; }
+
+    [Required]
+    [Range(0.1, Double.MaxValue)]
+    public double? Price { get; set; }
+
+    [Required]
+    [Range(0.1, 100)]
+    public int? ComparedPrice { get; set; }
+
+    [Required]
+    [StringLength(255)]
+    public string? Description { get; set; }
+
+    public ICollection<DrinkImage> Images { get; } = new List<DrinkImage>();
+
+    public List<BillDetail> BillDetails { get; } = [];
+
+    public List<Bill> Bills { get; } = [];
+
+}

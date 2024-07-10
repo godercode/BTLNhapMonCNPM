@@ -1,0 +1,83 @@
+.container {
+  max-width: 1470px;
+  margin: 0 auto;
+  margin-top: 25px;
+  padding: 20px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+h3 {
+  text-align: left;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #ecf0f1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th {
+  background-color: #b22830;
+  color: white;
+  font-weight: 700;
+}
+
+.sales-section {
+  display: flex;
+  gap: 15px;
+}
+
+.sales-section .drink {
+  flex: 65%;
+  height: auto;
+}
+
+.sales-section .recipt {
+  flex: 35%;
+  height: auto;
+}
+
+.product-list,
+.cart {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#cartTable .desc_img {
+  width: 30px;
+  display: block; /* Đảm bảo hình ảnh là khối */
+  margin: 0 auto; /* Căn giữa hình ảnh theo chiều ngang */
+}
+.cart-total {
+  bottom: 0;
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 20px;
+  font-weight: 700;
+}
+.cart-total .button {
+  background-color: #b22830;
+  margin-top: 10px;
+}

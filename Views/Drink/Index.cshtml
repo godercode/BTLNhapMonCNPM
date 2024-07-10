@@ -1,0 +1,220 @@
+@model IEnumerable<BTLNhapMonCNPM.Models.Drink>
+
+
+@{
+    ViewData["Title"] = "Drink Manager";
+}
+
+<main class="px-2 py-8">
+    <p>Danh sánh đồ uống</p>
+    <div class="flex gap-4 items-center pt-8 px-8">
+        @foreach (var item in Model)
+        {
+            <div class="flex items-center gap-2 h-24 w-24">
+                <div class=""><img src=@item.Images.ToArray()[0].Url alt="" class="w-8 h-8"></div>
+                <div></div>
+                <div></div>
+            </div>
+        }
+        <div class="h-[180px] w-[120px] flex items-center justify-end flex-col gap-2">
+            <div>
+                <img src="https://th.bing.com/th/id/R.90b2071fd2dd3f35fe1118092c9ffeb6?rik=HlbJCbCbfKJDDA&riu=http%3a%2f%2fwww.clipartbest.com%2fcliparts%2f9cR%2fRRn%2f9cRRRn5Mi.jpeg&ehk=E3TLsk1K2fHKUiU7MLYTGHPxizCbgNd5DdOmKncgdkM%3d&risl=&pid=ImgRaw&r=0"
+                    alt="Thêm đồ uống" class="object-cover" />
+            </div>
+            <div>
+                <h2>Thêm đồ uống</h2>
+            </div>
+            <a asp-action="Create">Nhấn để thêm</a>
+        </div>
+    </div>
+
+    @* <div class="content">
+    <h1 class="drink-name">FREEZE</h1>
+    <p class="desc">
+    Sảng khoái với thức uống đá xay phong cách Việt. Freeze là thức uống
+    đá xay mát lạnh được pha chế từ những nguyên liệu thuần túy của Việt
+    Nam.
+    </p>
+    </div>
+    <div class="mySwiper">
+    <div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg"
+    alt="Freeze Trà Xanh" />
+    <h2 class="">Freeze Trà Xanh</h2>
+    <p class="">Giá: 55.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/04_2023/New_product/thumbs/270_crop_HLC_New_logo_5.1_Products__FREEZE_CHOCO.jpg"
+    alt="Freeze Sô-cô-la" />
+    <h2>Freeze Sô-cô-la</h2>
+    <p class="">Giá: 55.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__CARAMEL_FREEZE_PHINDI.jpg"
+    alt="Freeze CARAMEL" />
+    <h2>CARAMEL PHIN FREEZE</h2>
+    <p class="">Giá: 55.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__COOKIES_FREEZE.jpg"
+    alt="Freeze Trà Xanh" />
+    <h2>COOKIE & CREAM</h2>
+    <p class="">Giá: 55.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg"
+    alt="Freeze Trà Xanh" />
+    <h2 class="">Freeze Trà Xanh</h2>
+    <p class="">Giá: 55.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/04_2023/New_product/thumbs/270_crop_HLC_New_logo_5.1_Products__FREEZE_CHOCO.jpg"
+    alt="Freeze Sô-cô-la" />
+    <h2>Freeze Sô-cô-la</h2>
+    <p class="">Giá: 55.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__CARAMEL_FREEZE_PHINDI.jpg"
+    alt="Freeze CARAMEL" />
+    <h2>CARAMEL PHIN FREEZE</h2>
+    <p class="">Giá: 55.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__COOKIES_FREEZE.jpg"
+    alt="Freeze Trà Xanh" />
+    <h2>COOKIE & CREAM</h2>
+    <p class="">Giá: 55.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://th.bing.com/th/id/R.90b2071fd2dd3f35fe1118092c9ffeb6?rik=HlbJCbCbfKJDDA&riu=http%3a%2f%2fwww.clipartbest.com%2fcliparts%2f9cR%2fRRn%2f9cRRRn5Mi.jpeg&ehk=E3TLsk1K2fHKUiU7MLYTGHPxizCbgNd5DdOmKncgdkM%3d&risl=&pid=ImgRaw&r=0"
+    alt="Freeze Trà Xanh" />
+    <h2>Thêm đồ uống</h2>
+    <p class="">Click to add</p>
+    </div>
+    </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    </div>
+    <div class="content">
+    <h1 class="drink-name">CÀ PHÊ</h1>
+    <p class="desc">
+    Sự kết hợp hoàn hảo giữa hạt cà phê Robusta & Arabica thượng hạng được
+    trồng trên những vùng cao nguyên Việt Nam màu mỡ, qua những bí quyết
+    rang xay độc đáo, Highlands Coffee chúng tôi tự hào giới thiệu những
+    dòng sản phẩm Cà phê mang hương vị đậm đà và tinh tế.
+    </p>
+    </div>
+    <div class="mySwiper">
+    <div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2024/Phindi_Cassia/thumbs/270_crop_Phindi_Cassia_Highlands_products_Image1.jpg"
+    alt="PHINDI CASSIA" />
+    <h2 class="">PHINDI CASSIA</h2>
+    <p class="">Giá: 45.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__PHINDI_CHOCO.jpg"
+    alt="Freeze Sô-cô-la" />
+    <h2>PHINDI CHOCO</h2>
+    <p class="">Giá: 45.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__PHINDI_HANH_NHAN.jpg"
+    alt="Freeze CARAMEL" />
+    <h2>PHINDI HẠNH NHÂN</h2>
+    <p class="">Giá: 45.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__PHINDI_KEM_SUA.jpg"
+    alt="Freeze Trà Xanh" />
+    <h2>PHINDI KEM SỮA</h2>
+    <p class="">Giá: 45.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2024/Phindi_Cassia/thumbs/270_crop_Phindi_Cassia_Highlands_products_Image1.jpg"
+    alt="PHINDI CASSIA" />
+    <h2 class="">PHINDI CASSIA</h2>
+    <p class="">Giá: 45.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__PHINDI_CHOCO.jpg"
+    alt="Freeze Sô-cô-la" />
+    <h2>PHINDI CHOCO</h2>
+    <p class="">Giá: 45.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__PHINDI_HANH_NHAN.jpg"
+    alt="Freeze CARAMEL" />
+    <h2>PHINDI HẠNH NHÂN</h2>
+    <p class="">Giá: 45.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://www.highlandscoffee.com.vn/vnt_upload/product/06_2023/thumbs/270_crop_HLC_New_logo_5.1_Products__PHINDI_KEM_SUA.jpg"
+    alt="Freeze Trà Xanh" />
+    <h2>PHINDI KEM SỮA</h2>
+    <p class="">Giá: 45.000 VNĐ</p>
+    </div>
+    </div>
+    <div>
+    <div class="drink-item">
+    <img
+    src="https://th.bing.com/th/id/R.90b2071fd2dd3f35fe1118092c9ffeb6?rik=HlbJCbCbfKJDDA&riu=http%3a%2f%2fwww.clipartbest.com%2fcliparts%2f9cR%2fRRn%2f9cRRRn5Mi.jpeg&ehk=E3TLsk1K2fHKUiU7MLYTGHPxizCbgNd5DdOmKncgdkM%3d&risl=&pid=ImgRaw&r=0"
+    alt="Freeze Trà Xanh" />
+    <h2>Thêm đồ uống</h2>
+    <p class="">Click to add</p>
+    </div>
+    </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    </div> *@
+</main>

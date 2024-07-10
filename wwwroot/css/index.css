@@ -1,0 +1,42 @@
+.specialty {
+  background-color: #f9f9f9;
+}
+
+.specialty .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.specialty .content {
+  font-weight: bold;
+  flex: 1;
+  padding: 20px;
+}
+
+.specialty .image {
+  max-width: 100%;
+  border: 0px;
+  flex: 1;
+}
+
+.specialty .image img {
+  margin-top: -90px;
+  max-width: 70%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.specialty h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #b22830;
+}
+
+.specialty p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
