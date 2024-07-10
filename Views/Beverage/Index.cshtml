@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Beverage>
+
+<h2>Danh sách đồ uống</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Thêm đồ uống mới</a>
+</p>
+
+<div class="row">
+    @foreach (var beverage in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="@beverage.Image" class="card-img-top" alt="@beverage.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@beverage.Name</h5>
+                    <p class="card-text">@beverage.Description</p>
+                    <p class="card-text"><strong>Giá:</strong> @beverage.Price VND</p>
+                    <a href="@Url.Action("Edit", new { id = beverage.Id })" class="btn btn-secondary btn-sm">Sửa</a>
+                    <a href="@Url.Action("Details", new { id = beverage.Id })" class="btn btn-info btn-sm">Chi tiết</a>
+                    <a href="@Url.Action("Delete", new { id = beverage.Id })" class="btn btn-danger btn-sm">Xóa</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
