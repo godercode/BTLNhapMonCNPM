@@ -16,7 +16,7 @@ namespace BTLNhapMonCNPM.Models
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Giá là bắt buộc.")]
-        [Range(0.01, 10000, ErrorMessage = "Giá phải nằm trong khoảng từ 0.01 đến 10000.")]
+        [Range(10000, 100000, ErrorMessage = "Giá phải nằm trong khoảng từ 10000 đến 100000.")]
         public decimal Price { get; set; }
     }
 }

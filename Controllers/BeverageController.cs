@@ -80,6 +80,12 @@ namespace BTLNhapMonCNPM.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
+            var beverage = _beverageRepository.GetById(id);
+            if (beverage == null)
+            {
+                return NotFound();
+            }
+
             _beverageRepository.Delete(id);
             return RedirectToAction(nameof(Index));
         }
