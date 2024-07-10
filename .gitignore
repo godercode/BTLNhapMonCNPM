@@ -29,5 +29,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
-node_modules
 db
+Images
+node_modules
