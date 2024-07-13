@@ -1,0 +1,35 @@
+@model IEnumerable<BTLNhapMonCNPM.Models.Drink>
+
+
+@{
+    ViewData["Title"] = "Buy Manager";
+}
+
+<main class="px-2 py-8">
+    <p>Danh sánh đồ uống</p>
+    <div class="flex gap-4 items-center pt-8 px-8 justify-between flex-wrap">
+        @foreach (var item in Model)
+        {
+            <div class="flex items-center gap-2 flex-col">
+                <div class=""><img src=@item.Images.ToArray()[0].Url alt="" class="w-[120px] h-[120px]"></div>
+                <div>
+                    <p>@item.Name</p>
+                </div>
+                <div class="flex w-full justify-around">
+                    <p id="price-@item.Id" class="line-through">@item.Price đ</p>
+                    <p id="comparedPrice-@item.Id">@item.ComparedPrice đ</p>
+                </div>
+                <div class="flex gap-4">
+                    <input type="number" value="1" id="quantity-@item.Id"
+                        class="w-full gap-x-2.5 gap-y-2.5 rounded border border-gray-200 bg-white p-3"
+                        onchange="handleQuantityChanged('@item.Id', this.value, @item.Price, @item.ComparedPrice)" min="0">
+                    <button class="bg-red-500 rounded-lg flex-1"
+                        onclick="handleBuyNow('@item.Id', document.getElementById('quantity-@item.Id').value)">Buy
+                        now</button>
+                </div>
+            </div>
+        }
+    </div>
+</main>
+
+<script src="/js/buy.js"></script>

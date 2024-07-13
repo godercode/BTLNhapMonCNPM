@@ -1,5 +1,8 @@
 using BTLNhapMonCNPM.Data;
+using BTLNhapMonCNPM.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.EntityFrameworkCore;
 
 namespace BTLNhapMonCNPM.Controllers;
 
@@ -14,7 +17,13 @@ public class DrinkController : Controller
 
     public IActionResult Index()
     {
-        return View(_context.Drinks.ToList());
+        var drinks = _context.Drinks.Include(_drink => _drink.Images).ToList();
+        foreach (var drink in drinks)
+        {
+            Console.WriteLine("image");
+            Console.WriteLine(drink.Images);
+        }
+        return View(drinks);
     }
 
     public IActionResult Create()
@@ -42,7 +51,7 @@ public class DrinkController : Controller
             Directory.CreateDirectory(_targetFilePath);
         }
 
-        var allowedFileTypes = new[] { "png", "jpg" };
+        var allowedFileTypes = new[] { "png", "jpg", "jpeg" };
 
         var fileExtension = Path.GetExtension(files.FileName).Substring(1);
 
@@ -54,8 +63,9 @@ public class DrinkController : Controller
             });
         }
 
+        var fileName = files.FileName.Replace(" ", "");
 
-        var filePath = Path.Combine(_targetFilePath, files.FileName);
+        var filePath = Path.Combine(_targetFilePath, fileName);
 
         using (var stream = new FileStream(filePath, FileMode.Create))
         {
@@ -65,8 +75,79 @@ public class DrinkController : Controller
 
         return Json(new
         {
-            url = $"Images/{files.FileName}",
+            url = $"/Images/{fileName}",
             message = "uploaded successfully"
         });
     }
+
+    [HttpPost]
+    public async Task<JsonResult> CreateAsync(IFormCollection formData)
+    {
+        Drink drink = new Drink();
+
+        try
+        {
+            if (string.IsNullOrWhiteSpace(formData["name"].ToString()))
+            {
+                throw new ArgumentException("Name is required.");
+            }
+
+            drink.Name = formData["name"].ToString();
+
+            if (!double.TryParse(formData["price"], out double price) || price <= 0)
+            {
+                throw new ArgumentException("Price must be a positive number.");
+            }
+
+            drink.Price = price;
+
+            if (!double.TryParse(formData["comparePrice"], out double comparedPrice) || comparedPrice <= 0)
+            {
+                throw new ArgumentException("Compared Price must be a positive number.");
+            }
+
+            drink.ComparedPrice = comparedPrice;
+
+            if (string.IsNullOrWhiteSpace(formData["description"].ToString()))
+            {
+                throw new ArgumentException("Description is required.");
+            }
+
+            drink.Description = formData["description"].ToString();
+
+            // Validate images
+            var imageUrls = formData["images"];
+            if (imageUrls.Count == 0)
+            {
+                throw new ArgumentException("At least one image is required.");
+            }
+
+            foreach (var item in imageUrls)
+            {
+                if (string.IsNullOrWhiteSpace(item.ToString()))
+                {
+                    throw new ArgumentException("Image URL cannot be empty.");
+                }
+
+                drink.Images.Add(new DrinkImage { Url = item.ToString() });
+            }
+        }
+        catch (ArgumentException ex)
+        {
+            return Json(new { message = ex.Message });
+        }
+
+        _context.Drinks.Add(drink);
+        await _context.SaveChangesAsync();
+
+        foreach (var image in drink.Images)
+        {
+            image.DrinkId = drink.Id.Value;
+        }
+
+        await _context.SaveChangesAsync();
+
+        return Json(new { message = "created successfully" });
+    }
+
 }

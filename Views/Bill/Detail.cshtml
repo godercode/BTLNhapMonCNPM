@@ -1,0 +1,30 @@
+@model BTLNhapMonCNPM.Models.Bill;
+
+@{
+    ViewData["Title"] = "Bill Detail";
+}
+
+<div class="flex justify-center">
+    <div class="p-8 w-4/5">
+        <div class="grid justify-between grid-cols-2">
+            <div>Bill ID: @Model.Id</div>
+            <div>Created At: @Model.Created.ToString("yyyy-MM-dd HH:mm:ss") </div>
+            <div>Total: @Model.Total</div>
+            <div>Total: @Model.ComparedTotal</div>
+        </div>
+        <div class="text-center mt-2">Bảng danh sách đồ uống</div>
+        <div class="mt-2 grid grid-cols-4">
+            <div>Tên</div>
+            <div>Giá</div>
+            <div>Giảm gỉam</div>
+            <div>Số lượng</div>
+            @foreach (var _drink in Model.BillDetails)
+            {
+                <div>@_drink.Drink.Name</div>
+                <div>@_drink.Drink.Price</div>
+                <div>@_drink.Drink.ComparedPrice</div>
+                <div>@_drink.Quantity</div>
+            }
+        </div>
+    </div>
+</div>

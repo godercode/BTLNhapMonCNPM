@@ -9,14 +9,21 @@ public class Bill
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
     public DateTime Created { set; get; }
 
     [Required]
     [Range(0.1, Double.MaxValue)]
     public double? Total { get; set; }
 
+    [Required]
+    [Range(0.1, Double.MaxValue)]
+    public double? ComparedTotal { get; set; }
+
     public List<BillDetail> BillDetails { get; } = [];
     public List<Drink> Drinks { get; } = [];
+
+    public Bill()
+    {
+        Created = DateTime.UtcNow;
+    }
 }

@@ -1,0 +1,21 @@
+@model IEnumerable<BTLNhapMonCNPM.Models.Bill>
+
+
+@{
+    ViewData["Title"] = "Bill Manager";
+}
+<div class="text-center mt-8">Danh sách hoá đơn</div>
+
+<div class="grid grid-cols-4 p-8 gap-2">
+    <div>Id</div>
+    <div>Created at</div>
+    <div>Total</div>
+    <div>Total Compared</div>
+    @foreach (var item in Model)
+    {
+        <a asp-action="Detail" asp-route-id="@item.Id">@item.Id</a>
+        <div> @item.Created.ToString("yyyy-MM-dd HH:mm:ss") </div>
+        <div div> @item.Total </div>
+        <div> @item.ComparedTotal </div>
+    }
+</div>

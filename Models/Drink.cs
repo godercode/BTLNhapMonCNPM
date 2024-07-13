@@ -18,14 +18,14 @@ public class Drink
     public double? Price { get; set; }
 
     [Required]
-    [Range(0.1, 100)]
-    public int? ComparedPrice { get; set; }
+    [Range(0.1, Double.MaxValue)]
+    public double? ComparedPrice { get; set; }
 
     [Required]
     [StringLength(255)]
     public string? Description { get; set; }
 
-    public ICollection<DrinkImage> Images { get; } = new List<DrinkImage>();
+    public ICollection<DrinkImage> Images { get; set; } = new List<DrinkImage>();
 
     public List<BillDetail> BillDetails { get; } = [];
 

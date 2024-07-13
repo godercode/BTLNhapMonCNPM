@@ -7,13 +7,18 @@
 
 <main class="px-2 py-8">
     <p>Danh sánh đồ uống</p>
-    <div class="flex gap-4 items-center pt-8 px-8">
+    <div class="flex gap-4 items-center pt-8 px-8 justify-between">
         @foreach (var item in Model)
         {
-            <div class="flex items-center gap-2 h-24 w-24">
-                <div class=""><img src=@item.Images.ToArray()[0].Url alt="" class="w-8 h-8"></div>
-                <div></div>
-                <div></div>
+            <div class="flex items-center gap-2 flex-col">
+                <div class=""><img src=@item.Images.ToArray()[0].Url alt="" class="w-[120px] h-[120px]"></div>
+                <div>
+                    <p>@item.Name</p>
+                </div>
+                <div class="flex w-full justify-around">
+                    <p>@item.Price đ</p>
+                    <p>@item.ComparedPrice đ</p>
+                </div>
             </div>
         }
         <div class="h-[180px] w-[120px] flex items-center justify-end flex-col gap-2">

@@ -22,6 +22,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseStaticFiles(new StaticFileOptions()
@@ -39,6 +42,6 @@ app.UseFileServer();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Drink}/{action=Create}/{id?}");
+    pattern: "{controller=Buy}/{action=Index}/{id?}");
 
 app.Run();
