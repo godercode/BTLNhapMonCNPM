@@ -25,10 +25,14 @@ public class Drink
     [StringLength(255)]
     public string? Description { get; set; }
 
+    [Required]
+    public int CategoryId { get; set; }
+
+    public Category Category = null!;
+
     public ICollection<DrinkImage> Images { get; set; } = new List<DrinkImage>();
 
     public List<BillDetail> BillDetails { get; } = [];
 
     public List<Bill> Bills { get; } = [];
-
 }

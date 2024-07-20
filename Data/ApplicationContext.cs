@@ -15,6 +15,9 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
 
     public DbSet<BillDetail> BillDetails => Set<BillDetail>();
 
+    public DbSet<Category> Categories => Set<Category>();
+
+
     public FileService FileService;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,8 +30,15 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
             .IsRequired();
 
         modelBuilder.Entity<Bill>()
-                .HasMany(e => e.Drinks)
-                .WithMany(e => e.Bills)
-                .UsingEntity<BillDetail>();
+            .HasMany(e => e.Drinks)
+            .WithMany(e => e.Bills)
+            .UsingEntity<BillDetail>();
+
+        modelBuilder.Entity<Drink>().
+            HasOne(e => e.Category)
+            .WithMany(e => e.Drinks)
+            .HasForeignKey(e => e.CategoryId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
     }
 }

@@ -122,6 +122,8 @@ public class DrinkController : Controller
                 throw new ArgumentException("At least one image is required.");
             }
 
+            drink.CategoryId = 1;
+
             foreach (var item in imageUrls)
             {
                 if (string.IsNullOrWhiteSpace(item.ToString()))
@@ -149,5 +151,4 @@ public class DrinkController : Controller
 
         return Json(new { message = "created successfully" });
     }
-
 }
