@@ -16,9 +16,21 @@
                     <p>@item.Name</p>
                 </div>
                 <div class="flex w-full justify-around">
-                    <p>@item.Price đ</p>
+                    <p class="line-through">@item.Price đ</p>
                     <p>@item.ComparedPrice đ</p>
                 </div>
+                <dir class="flex justify-between gap-6">
+                    <a class="text-center px-4 py-2 bg-red-400 text-white rounded-lg" asp-action="Edit"
+                        asp-route-id="@item.Id">
+                        Edit
+                    </a>
+
+                    <a class="text-center px-2 py-4 bg-red-400 text-white rounded-lg" asp-action="Delete"
+                        asp-route-id="@item.Id">
+                        Delete
+                    </a>
+
+                </dir>
             </div>
         }
         <div class="h-[180px] w-[120px] flex items-center justify-end flex-col gap-2">

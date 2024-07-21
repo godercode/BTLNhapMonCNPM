@@ -2,13 +2,20 @@ const files = document.getElementById("files")
 
 const imageSection = document.getElementById("imageSection")
 
-const images = []
-
 const submitButton = document.getElementById("submit")
 
 imageSection.addEventListener("click", () => {
     files.click()
 })
+
+const images = [...document.getElementsByClassName("image")]?.map(
+    (imageTag) => {
+        const imageId = imageTag.id?.split("-")[1]
+        return `${imageTag.src} ${imageId}`
+    }
+)
+
+console.log("images:", images)
 
 files.addEventListener("change", async (event) => {
     const files = [...event?.target?.files]
@@ -35,6 +42,7 @@ files.addEventListener("change", async (event) => {
         const img = document.createElement("img")
         img.src = url
         images.push(url)
+        console.log(images, "image")
         img.className = "w-20 h-20"
         div.appendChild(img)
         const addImage = document.getElementById("imageSection")
@@ -55,6 +63,7 @@ submitButton.addEventListener("click", async () => {
         formData.append("images", image)
     })
 
+    formData.append("id", document.getElementById("drinkId").value)
     formData.append("name", document.getElementById("name").value)
     formData.append("price", document.getElementById("price").value)
     formData.append(
@@ -64,7 +73,7 @@ submitButton.addEventListener("click", async () => {
     formData.append("description", document.getElementById("description").value)
     formData.append("categoryId", document.getElementById("categoryId").value)
 
-    const res = await fetch("/Drink/Create", {
+    const res = await fetch("/Drink/Edit", {
         method: "POST",
         body: formData,
         headers: {
@@ -74,7 +83,7 @@ submitButton.addEventListener("click", async () => {
 
     const { message } = await res.json()
 
-    if (message === "created successfully") {
+    if (message === "updated successfully") {
         alert(message)
         window.location.href = "/Drink"
         return
