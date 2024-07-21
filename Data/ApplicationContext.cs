@@ -17,7 +17,6 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
 
     public DbSet<Category> Categories => Set<Category>();
 
-
     public FileService FileService;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,5 +39,12 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
             .HasForeignKey(e => e.CategoryId)
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
+
+        modelBuilder.Entity<Category>().HasData(
+            new Category { Id = 1, Name = "Cà phê" },
+            new Category { Id = 2, Name = "Freeze" },
+            new Category { Id = 3, Name = "Trà" },
+            new Category { Id = 4, Name = "Bánh" }
+        );
     }
 }
