@@ -1,3 +1,6 @@
+@model IEnumerable<BTLNhapMonCNPM.Models.Category>
+
+
 <main class="p-5 flex flex-col gap-4">
     <div id="imageSection" class="cursor-pointer flex gap-4 flex-wrap">
         <div class="font-medium text-primary" id="addImage">
@@ -23,6 +26,16 @@
         <label for="description">Mô tả</label>
         <input type="text" id="description"
             class="w-full gap-x-2.5 gap-y-2.5 rounded border border-gray-200 bg-white p-3">
+    </div>
+    <div>
+        <label for="categoryId">Loại đồ uống</label>
+        <select name="categoryId" id="categoryId"
+            class="w-full gap-x-2.5 gap-y-2.5 rounded border border-gray-200 bg-white p-3">
+            @foreach (var category in Model)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
     </div>
 
     <div>

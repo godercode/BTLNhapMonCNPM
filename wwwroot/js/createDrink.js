@@ -57,10 +57,10 @@ submitButton.addEventListener("click", async () => {
   })
 
   formData.append("name", document.getElementById("name").value)
-
   formData.append("price", document.getElementById("price").value)
   formData.append("comparePrice", document.getElementById("comparePrice").value)
   formData.append("description", document.getElementById("description").value)
+  formData.append("categoryId", document.getElementById("categoryId").value)
 
   const res = await fetch("/Drink/Create", {
     method: "POST",

@@ -28,7 +28,8 @@ public class DrinkController : Controller
 
     public IActionResult Create()
     {
-        return View();
+        var categories = _context.Categories.ToList();
+        return View(categories);
     }
 
     [HttpPost]
@@ -72,7 +73,6 @@ public class DrinkController : Controller
             await files.CopyToAsync(stream);
         }
 
-
         return Json(new
         {
             url = $"/Images/{fileName}",
@@ -115,14 +115,21 @@ public class DrinkController : Controller
 
             drink.Description = formData["description"].ToString();
 
-            // Validate images
             var imageUrls = formData["images"];
             if (imageUrls.Count == 0)
             {
                 throw new ArgumentException("At least one image is required.");
             }
 
-            drink.CategoryId = 1;
+            if (int.TryParse(formData["categoryId"], out int categoryId) && categoryId > 0 && _context.Categories.FirstOrDefault(_c => _c.Id == categoryId) != null)
+            {
+                drink.CategoryId = categoryId;
+            }
+            else
+            {
+                throw new ArgumentException("Category Id is required.");
+            }
+
 
             foreach (var item in imageUrls)
             {
